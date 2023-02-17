@@ -31,7 +31,7 @@
   flex-direction: column;
   justify-items: flex-start;
   color: white;
-  display: flex;
+ 
  
 }
 .header__text {
@@ -45,9 +45,9 @@
   flex-direction: row  ;  
   justify-content: space-around;
   align-items: center;
-   
+ 
 }
-.nav__link {
+.nav__link>a {
   display: flex;
-   
+  color: white;
 }

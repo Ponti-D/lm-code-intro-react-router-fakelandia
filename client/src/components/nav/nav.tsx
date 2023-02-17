@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 
 const Nav : React.FC = () =>
-  <nav className="nav">
+  <nav>
       <ul className="nav__container">
           <li className="nav__link"><NavLink to='/home'>Home</NavLink></li>
           <li className="nav__link"><NavLink to='/misdemeanours'>Misdemeanours</NavLink></li>
