@@ -1,3 +1,8 @@
+:root {
+  --darkgreen: #075404;
+  --orange: #f38f05fc;
+}
+
 .App {
   text-align: center;
 }
@@ -23,7 +28,7 @@
   }
 }
 .header {
-  background-color: #162e5e;
+  background-color: var(--darkgreen);
   display: flex;
   flex-direction: column;
   justify-items: center;
@@ -40,7 +45,21 @@
   align-items: center;
   padding-bottom: 0.5em;
 }
-.nav__link > a {
+.nav__link  {
   display: flex;
   color: white;
+  text-decoration: none;
 }
+.nav__link--active {
+  color: var(--orange);
+}
+.table {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+th, td {
+  text-align: center;
+}
+
+ 

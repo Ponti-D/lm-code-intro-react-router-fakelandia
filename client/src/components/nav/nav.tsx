@@ -7,7 +7,7 @@ const Nav: React.FC = () => (
       <li className="nav__link">
         <NavLink
           to="/home"
-          className={({ isActive }) => (isActive ? "link--active" : "link")}
+          className={({ isActive }) => (isActive ? "nav__link--active" : "nav__link")}
         >
           Home
         </NavLink>
@@ -15,7 +15,7 @@ const Nav: React.FC = () => (
       <li className="nav__link">
         <NavLink
           to="/misdemeanours"
-          className={({ isActive }) => (isActive ? "link--active" : "link")}
+          className={({ isActive }) => ( isActive ? "nav__link--active" : "nav__link")}
         >
           Misdemeanours
         </NavLink>
@@ -23,7 +23,7 @@ const Nav: React.FC = () => (
       <li className="nav__link">
         <NavLink
           to="/confession"
-          className={({ isActive }) => (isActive ? "link--active" : "link")}
+          className={({ isActive }) => (isActive ? "nav__link--active" : "nav__link")}
         >
           Confess To Us
         </NavLink>
