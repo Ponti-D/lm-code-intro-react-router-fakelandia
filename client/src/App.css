@@ -45,21 +45,66 @@
   align-items: center;
   padding-bottom: 0.5em;
 }
-.nav__link  {
+.nav__link {
+  font-size: 1.2em;
   display: flex;
   color: white;
   text-decoration: none;
 }
 .nav__link--active {
   color: var(--orange);
+  font-size: 1.2em;
 }
+
 .table {
   width: 100%;
-  margin-top: 1rem;
+  margin-top: 1em;
 }
 
-th, td {
+th,
+td {
   text-align: center;
 }
+.form {
+  width: 100%;
+}
+.confession__text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.form__container {
+  display: flex;
+  border: #075404;
+  border-style: solid;
+  flex-direction: column;
+  width: 50%;
+  margin: 0 auto;
+  align-items: flex-end;
+}
 
- 
+.form__input {
+  font-size: 1rem;
+  margin: 0.2em;
+  width: 75%;
+}
+
+.form__controlgroup {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 20px 10px 10px 10px;
+}
+
+.form__controlgroup--details {
+  justify-content: space-between;
+}
+.form__input--details {
+  width: 100%;
+}
+.submit__container {
+
+  display: flex;
+  justify-content: space-evenly;
+  padding-bottom: 15px;
+}
