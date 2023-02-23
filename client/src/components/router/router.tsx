@@ -8,9 +8,9 @@ import DefaultLayout from "../layouts/main_layout";
 export const Router: React.FC = () => (
   <>
     <Routes>
-      <Route element={<DefaultLayout />}>
-        <Route path="/"  element={<Home />} />
-        <Route path="home" element={<Home />} />
+      <Route path="/" element={<DefaultLayout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="misdemeanours" element={<Misdemeanours />} />
         <Route path="confession" element={<Confession />} />
         <Route path="*" element={<PageNotFound />} />
