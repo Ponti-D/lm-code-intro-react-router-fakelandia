@@ -3,56 +3,46 @@ import { JustTalk, MisdemeanourKind } from "../../../types/misdemeanours.types";
 import { MisdemeanoursContext } from "../misdemeanours/MisdemeanoursContext";
 
 const Confession: React.FC = () => {
-  const [subject, setSubject] = useState<string>("");
+  const [subject, setSubject] = useState("");
+  const [details, setDetails] = useState("");
+  const [detailsTouched, setDetailsTouched] = useState(false);
+  const [subjectTouched, setSubjectTouched] = useState(false);
   const [reason, setReason] = useState<MisdemeanourKind | JustTalk>(
     "just-talk"
   );
-  const [details, setDetails] = useState<string>("");
-  const [formValid, setFormValid] = useState(false);
-  const [validationMessage, setvalidationMessage] = useState("");
   const [hasError, sethasError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setsuccessMessage] = useState("");
-
-  
   const misdemeanour = useContext(MisdemeanoursContext);
- 
+  let formValid = false;
 
-  const onChangeSubject = (e: any) => {
-    e.preventDefault();
-    setsuccessMessage("");
-    setSubject(e.target.value);
-    if (e.target.value.length < 3 || e.target.value.length > 20) {
-      setvalidationMessage(
-        "The detials needs to be between 3 and 20 haractors long."
-      );
-      setFormValid(false); //set submit button status
-    } else {
-     
-      setvalidationMessage("");
-      setFormValid(true);
-    }
+  const subjectValid = subject.trim().length >= 3 && subject.trim().length < 20;
+  const subjectTouchedInvalid = !subjectValid && subjectTouched;
+
+  const detailsValid =  details.trim().length >= 10 && details.trim().length < 100;
+  const detailsTouchedInvalid = !detailsValid && detailsTouched;
+  
+  const subjectTouchHandler = (e: any) => {
+    setSubjectTouched(true);
+  };
+  const detailsTouchHandler = (e: any) => {
+    setDetailsTouched(true);
   };
 
-  const onChangeDetails = (e: any) => {
+  const changeSubjectHandler = (e: any) => {
     e.preventDefault();
-    setsuccessMessage("");
-    setDetails(e.target.value);
+    setSubject(e.target.value);
+  };
 
-    if (e.target.value.length < 10 || e.target.value.length > 100) {
-      setvalidationMessage(
-        "The detials needs to be between 10 and 100 haractors long."
-      );
-      setFormValid(false); //set submit button status
-    } else {
-      setvalidationMessage("");
-      setFormValid(true);
-    }
+  const changeDetailsHandler = (e: any) => {
+    e.preventDefault();
+    setDetails(e.target.value);
   };
 
   const onFormSubmit = async (e: any) => {
     e.preventDefault();
-    
+    formValid = subjectValid && detailsValid;
+    if (!formValid) return;
     const newMisdemeanour = {
       subject,
       reason,
@@ -82,16 +72,16 @@ const Confession: React.FC = () => {
           date: new Date().toLocaleDateString(),
         });
       }
-      setsuccessMessage( "Confession submitted " + data.message) ;
-      console.log(response.status + "Confession submitted " + data.message);
+      setsuccessMessage("Confession submitted " + data.message);
     } catch (error) {
       console.log(error);
     }
-   
+
     setDetails("");
     setSubject("");
     setReason("just-talk");
-     setFormValid(false);
+    setSubjectTouched(false);
+    setDetailsTouched(false);
   };
 
   return (
@@ -112,12 +102,18 @@ const Confession: React.FC = () => {
           <div className="form__controlgroup">
             <label>Subject: </label>
             <input
-            className="form__input"
+              className="form__input"
               type="text"
               required
               value={subject}
-              onChange={onChangeSubject}
+              onChange={changeSubjectHandler}
+              onBlur={subjectTouchHandler}
             />
+            {subjectTouchedInvalid && (
+              <label className="errorMessage" htmlFor="validationMessage">
+                The subject needs to be between 3 and 20 charactors long.
+              </label>
+            )}
           </div>
           <div className="form__controlgroup">
             <label> Reason for contact:</label>
@@ -139,33 +135,30 @@ const Confession: React.FC = () => {
             <label htmlFor="details">Details here 👉</label>
             <textarea
               name="details"
-              className="form__input--details"  
+              className="form__input--details"
               value={details}
               rows={5}
-              onChange={onChangeDetails}
+              onChange={changeDetailsHandler}
               required
-              
+              onBlur={detailsTouchHandler}
             />
-          </div>
-          {!formValid && validationMessage.length > 0 && (
-            <div>
-              <label htmlFor="validationMessage">
-                Please correct your information
+            {detailsTouchedInvalid && (
+              <label className="errorMessage" htmlFor="validationMessage">
+                The detials needs to be between 10 and 100 charactors long.
               </label>
-              <p>{validationMessage}</p>
-            </div>
-          )}
-          {hasError && (
-            <div>
-              <label htmlFor="errorMessage">Errors</label>
-              <p>{errorMessage}</p>
-            </div>
+            )}
+          </div>
+          {hasError && errorMessage.length > 0 && (
+            <label className="errorMessage" htmlFor="errorMessage">
+              {errorMessage}{" "}
+            </label>
           )}
           <div className="submit__container">
-            <button disabled={!formValid || hasError}> Submit 🤓</button>
-            {successMessage.length > 0 && (
-              <p className="success__message">{successMessage}</p>
-            )}
+            <button disabled={!subjectValid || !detailsValid}>
+              {" "}
+              Submit 🤓
+            </button>
+            {successMessage.length > 0 && <p>{successMessage}</p>}
           </div>
         </form>
       </div>

@@ -1,6 +1,7 @@
 :root {
   --darkgreen: #075404;
   --orange: #f38f05fc;
+  --red:  #ff0000 ;
 }
 
 .App {
@@ -75,7 +76,7 @@ td {
 }
 .form__container {
   display: flex;
-  border: #075404;
+  border:var(--darkgreen);
   border-style: solid;
   flex-direction: column;
   width: 50%;
@@ -107,4 +108,7 @@ td {
   display: flex;
   justify-content: space-evenly;
   padding-bottom: 15px;
+}
+.errorMessage {
+  color: var(--red);
 }
