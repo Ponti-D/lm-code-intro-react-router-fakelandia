@@ -1,6 +1,8 @@
 import React, { useContext, useState } from "react";
 import { JustTalk, MisdemeanourKind } from "../../../types/misdemeanours.types";
 import { MisdemeanoursContext } from "../misdemeanours/MisdemeanoursContext";
+import Subject from "./subject";
+
 
 const Confession: React.FC = () => {
   const [subject, setSubject] = useState("");
@@ -17,32 +19,38 @@ const Confession: React.FC = () => {
   let formValid = false;
 
   const subjectValid = subject.trim().length >= 3 && subject.trim().length < 20;
-  const subjectTouchedInvalid = !subjectValid && subjectTouched;
+  //const subjectTouchedInvalid = !subjectValid && subjectTouched;
 
-  const detailsValid =  details.trim().length >= 10 && details.trim().length < 100;
+  const detailsValid =
+    details.trim().length >= 10 && details.trim().length < 100;
   const detailsTouchedInvalid = !detailsValid && detailsTouched;
-  
-  const subjectTouchHandler = (e: any) => {
-    setSubjectTouched(true);
-  };
+
+  // const subjectTouchHandler = (e: any) => {
+  //   setSubjectTouched(true);
+    
+  // };
   const detailsTouchHandler = (e: any) => {
     setDetailsTouched(true);
   };
 
-  const changeSubjectHandler = (e: any) => {
-    e.preventDefault();
-    setSubject(e.target.value);
-  };
+  // const changeSubjectHandler = (e: any) => {
+  //   e.preventDefault();
+  //   setSubject(e.target.value);
+  //   setsuccessMessage("");
+  // };
 
   const changeDetailsHandler = (e: any) => {
     e.preventDefault();
     setDetails(e.target.value);
+    setsuccessMessage("");
   };
 
   const onFormSubmit = async (e: any) => {
     e.preventDefault();
     formValid = subjectValid && detailsValid;
+
     if (!formValid) return;
+
     const newMisdemeanour = {
       subject,
       reason,
@@ -76,7 +84,7 @@ const Confession: React.FC = () => {
     } catch (error) {
       console.log(error);
     }
-
+  
     setDetails("");
     setSubject("");
     setReason("just-talk");
@@ -99,28 +107,17 @@ const Confession: React.FC = () => {
       </div>
       <div className="form__container">
         <form className="form" onSubmit={onFormSubmit}>
+          <Subject 
+           subject={subject}
+           onChangeSubject={(newValue) => setSubject(newValue)}
+          />
+
           <div className="form__controlgroup">
-            <label>Subject: </label>
-            <input
-              className="form__input"
-              type="text"
-              required
-              value={subject}
-              onChange={changeSubjectHandler}
-              onBlur={subjectTouchHandler}
-            />
-            {subjectTouchedInvalid && (
-              <label className="errorMessage" htmlFor="validationMessage">
-                The subject needs to be between 3 and 20 charactors long.
-              </label>
-            )}
-          </div>
-          <div className="form__controlgroup">
-            <label> Reason for contact:</label>
+            <label htmlFor="reason">Reason for contact:</label>
             <select
               defaultValue="just-talk"
               className="form__input"
-              name="reason"
+              id="reason"
               required
               onChange={(e) => setReason(e.target.value as MisdemeanourKind)}
             >
@@ -134,7 +131,7 @@ const Confession: React.FC = () => {
           <div className="form__controlgroup form__controlgroup--details">
             <label htmlFor="details">Details here 👉</label>
             <textarea
-              name="details"
+              id="details"
               className="form__input--details"
               value={details}
               rows={5}
@@ -143,22 +140,21 @@ const Confession: React.FC = () => {
               onBlur={detailsTouchHandler}
             />
             {detailsTouchedInvalid && (
-              <label className="errorMessage" htmlFor="validationMessage">
+              <p className="errorMessage" aria-label="validation Message">
                 The detials needs to be between 10 and 100 charactors long.
-              </label>
+              </p>
             )}
           </div>
           {hasError && errorMessage.length > 0 && (
-            <label className="errorMessage" htmlFor="errorMessage">
+            <p className="errorMessage"  aria-label="error message">
               {errorMessage}{" "}
-            </label>
+            </p>
           )}
           <div className="submit__container">
-            <button disabled={!subjectValid || !detailsValid}>
-              {" "}
+            <button disabled={!subjectValid || !detailsValid}>  
               Submit 🤓
             </button>
-            {successMessage.length > 0 && <p>{successMessage}</p>}
+            {successMessage.length > 0 &&   <p aria-label="success Message" >{successMessage}</p>}
           </div>
         </form>
       </div>
