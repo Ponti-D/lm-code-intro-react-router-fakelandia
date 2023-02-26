@@ -100,7 +100,7 @@ const Confession: React.FC = () => {
             </p>
           )}
           <div className="submit__container">
-            <button disabled={!subjectValid || !detailsValid}>Submit 🤓</button>
+            <button name="submit" disabled={!subjectValid || !detailsValid}>Submit 🤓</button>
             {successMessage.length > 0 && (
               <p aria-label="success Message">{successMessage}</p>
             )}
