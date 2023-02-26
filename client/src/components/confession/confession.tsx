@@ -1,17 +1,16 @@
 import React, { useContext, useState } from "react";
 import { JustTalk, MisdemeanourKind } from "../../../types/misdemeanours.types";
 import { MisdemeanoursContext } from "../misdemeanours/MisdemeanoursContext";
+import Detais from "./details";
 import Subject from "./subject";
-
 
 const Confession: React.FC = () => {
   const [subject, setSubject] = useState("");
   const [details, setDetails] = useState("");
-  const [detailsTouched, setDetailsTouched] = useState(false);
-  const [subjectTouched, setSubjectTouched] = useState(false);
   const [reason, setReason] = useState<MisdemeanourKind | JustTalk>(
     "just-talk"
   );
+
   const [hasError, sethasError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setsuccessMessage] = useState("");
@@ -19,31 +18,9 @@ const Confession: React.FC = () => {
   let formValid = false;
 
   const subjectValid = subject.trim().length >= 3 && subject.trim().length < 20;
-  //const subjectTouchedInvalid = !subjectValid && subjectTouched;
 
   const detailsValid =
     details.trim().length >= 10 && details.trim().length < 100;
-  const detailsTouchedInvalid = !detailsValid && detailsTouched;
-
-  // const subjectTouchHandler = (e: any) => {
-  //   setSubjectTouched(true);
-    
-  // };
-  const detailsTouchHandler = (e: any) => {
-    setDetailsTouched(true);
-  };
-
-  // const changeSubjectHandler = (e: any) => {
-  //   e.preventDefault();
-  //   setSubject(e.target.value);
-  //   setsuccessMessage("");
-  // };
-
-  const changeDetailsHandler = (e: any) => {
-    e.preventDefault();
-    setDetails(e.target.value);
-    setsuccessMessage("");
-  };
 
   const onFormSubmit = async (e: any) => {
     e.preventDefault();
@@ -84,12 +61,10 @@ const Confession: React.FC = () => {
     } catch (error) {
       console.log(error);
     }
-  
+
     setDetails("");
     setSubject("");
     setReason("just-talk");
-    setSubjectTouched(false);
-    setDetailsTouched(false);
   };
 
   return (
@@ -107,9 +82,9 @@ const Confession: React.FC = () => {
       </div>
       <div className="form__container">
         <form className="form" onSubmit={onFormSubmit}>
-          <Subject 
-           subject={subject}
-           onChangeSubject={(newValue) => setSubject(newValue)}
+          <Subject
+            subject={subject}
+            onChangeSubject={(newValue) => setSubject(newValue)}
           />
 
           <div className="form__controlgroup">
@@ -128,33 +103,20 @@ const Confession: React.FC = () => {
               <option value="just-talk">I just want to talk 😬</option>
             </select>
           </div>
-          <div className="form__controlgroup form__controlgroup--details">
-            <label htmlFor="details">Details here 👉</label>
-            <textarea
-              id="details"
-              className="form__input--details"
-              value={details}
-              rows={5}
-              onChange={changeDetailsHandler}
-              required
-              onBlur={detailsTouchHandler}
-            />
-            {detailsTouchedInvalid && (
-              <p className="errorMessage" aria-label="validation Message">
-                The detials needs to be between 10 and 100 charactors long.
-              </p>
-            )}
-          </div>
+          <Detais
+            details={details}
+            onChangeDetails={(newValue) => setDetails(newValue)}
+          />
           {hasError && errorMessage.length > 0 && (
-            <p className="errorMessage"  aria-label="error message">
+            <p className="errorMessage" aria-label="error message">
               {errorMessage}{" "}
             </p>
           )}
           <div className="submit__container">
-            <button disabled={!subjectValid || !detailsValid}>  
-              Submit 🤓
-            </button>
-            {successMessage.length > 0 &&   <p aria-label="success Message" >{successMessage}</p>}
+            <button disabled={!subjectValid || !detailsValid}>Submit 🤓</button>
+            {successMessage.length > 0 && (
+              <p aria-label="success Message">{successMessage}</p>
+            )}
           </div>
         </form>
       </div>
