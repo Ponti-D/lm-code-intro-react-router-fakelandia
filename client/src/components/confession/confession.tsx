@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { JustTalk, MisdemeanourKind } from "../../../types/misdemeanours.types";
 import { MisdemeanoursContext } from "../misdemeanours/MisdemeanoursContext";
 import Detais from "./details";
+import ReasonForContact from "./reason_for_contact";
 import Subject from "./subject";
 
 const Confession: React.FC = () => {
@@ -86,23 +87,9 @@ const Confession: React.FC = () => {
             subject={subject}
             onChangeSubject={(newValue) => setSubject(newValue)}
           />
+          <ReasonForContact value={reason} onChangeReasonForContact={(newValue) => setReason(newValue)}
+          />
 
-          <div className="form__controlgroup">
-            <label htmlFor="reason">Reason for contact:</label>
-            <select
-              defaultValue="just-talk"
-              className="form__input"
-              id="reason"
-              required
-              onChange={(e) => setReason(e.target.value as MisdemeanourKind)}
-            >
-              <option value="rudeness">Mild Public Rudeness 🤪</option>
-              <option value="vegetables">Not Eating Your Vegetables 🥗 </option>
-              <option value="lift">Speaking in a Lift 🗣</option>
-              <option value="united">Supporting Manchester United 😈</option>
-              <option value="just-talk">I just want to talk 😬</option>
-            </select>
-          </div>
           <Detais
             details={details}
             onChangeDetails={(newValue) => setDetails(newValue)}
