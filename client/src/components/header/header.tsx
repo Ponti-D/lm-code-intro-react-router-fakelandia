@@ -1,9 +1,8 @@
 import Nav from "../nav/nav";
 
- 
 const Header: React.FC = () => (
   <header className="header">
-      <p className="header__text">Fakelandia Justice Department</p>  
+    <h1 className="header__text">Fakelandia Justice Department</h1>
     <Nav />
   </header>
 );

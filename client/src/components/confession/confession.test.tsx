@@ -23,8 +23,7 @@ describe("Confession form", () => {
       screen.getByRole("textbox", {name: /details/i}),
       "This is details xx xnnxnx nxnnxnx"
     );
-
- 
+    
    expect(screen.getByRole('button', { name: /submit/i, })).toBeEnabled();
  
    

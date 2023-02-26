@@ -18,7 +18,7 @@ export const MisdemeanoursTable: React.FC = () => {
       <div>
         <h2>Misdemeanours </h2>
         <div>
-          <div>
+          <div className="form_controlgoup">
             <MisdemeanerFilter
               selection={filterSelected}
               onFilterChange={setFilterSelected}

@@ -1,8 +1,9 @@
 :root {
   --darkgreen: #075404;
   --orange: #f38f05fc;
-  --red:  #ff0000 ;
+  --red:  #d81818 ;
 }
+
 
 .App {
   text-align: center;
@@ -36,7 +37,8 @@
   color: white;
 }
 .header__text {
-  font-size: 1em;
+  font-size: 1.5em;
+  color: white;
 }
 
 .nav__container {
@@ -88,7 +90,9 @@ td {
   font-size: 1rem;
   margin: 0.2em;
   width: 75%;
+  
 }
+
 
 .form__controlgroup {
   display: flex;
