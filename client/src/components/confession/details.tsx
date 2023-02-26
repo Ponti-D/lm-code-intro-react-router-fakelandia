@@ -2,7 +2,7 @@ import { useState } from "react";
 import ErrorMessage from "./error_message";
 
 interface DetailsProps {
-    details: string;
+  details: string;
   onChangeDetails: (newvalue: string) => void;
 }
 
@@ -26,9 +26,9 @@ const Detais: React.FC<DetailsProps> = ({ details, onChangeDetails }) => {
         value={details}
         rows={5}
         onChange={(e) => {
-            const errmessage = validate(e.target.value);
-            setErrorMessage(errmessage);
-            onChangeDetails(e.target.value);
+          const errmessage = validate(e.target.value);
+          setErrorMessage(errmessage);
+          onChangeDetails(e.target.value);
         }}
       />
       <ErrorMessage message={errorMessage} />

@@ -12,7 +12,7 @@ const Subject: React.FC<SubjectProps> = ({ subject, onChangeSubject }) => {
   );
 
   const validate: (value: string) => string | undefined = (value) => {
-    if (value.length < 3 || value.length > 23) {
+    if (value.length < 3 || value.length > 20) {
       return "The subject needs to be between 3 and 20 charactors long";
     }
     return undefined;
