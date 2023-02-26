@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/lm-code-intro-react-router-fakelandia/static/css/main.7f327676.css",
+    "main.js": "/lm-code-intro-react-router-fakelandia/static/js/main.c6c67fef.js",
+    "static/js/787.c4e7f8f9.chunk.js": "/lm-code-intro-react-router-fakelandia/static/js/787.c4e7f8f9.chunk.js",
+    "index.html": "/lm-code-intro-react-router-fakelandia/index.html",
+    "main.7f327676.css.map": "/lm-code-intro-react-router-fakelandia/static/css/main.7f327676.css.map",
+    "main.c6c67fef.js.map": "/lm-code-intro-react-router-fakelandia/static/js/main.c6c67fef.js.map",
+    "787.c4e7f8f9.chunk.js.map": "/lm-code-intro-react-router-fakelandia/static/js/787.c4e7f8f9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7f327676.css",
+    "static/js/main.c6c67fef.js"
+  ]
+}
