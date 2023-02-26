@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, HashRouter } from "react-router-dom";
 import Home from "../home/home";
 import Misdemeanours from "../misdemeanours/misdemeanours";
 import Confession from "../confession/confession";
@@ -7,7 +7,8 @@ import DefaultLayout from "../layouts/main_layout";
 
 export const Router: React.FC = () => (
   <>
-    <Routes>
+  <HashRouter>
+  <Routes>
       <Route path="/" element={<DefaultLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
@@ -16,5 +17,7 @@ export const Router: React.FC = () => (
         <Route path="*" element={<PageNotFound />} />
       </Route>
     </Routes>
+  </HashRouter>
+   
   </>
 );
