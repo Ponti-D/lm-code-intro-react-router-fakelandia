@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, HashRouter } from "react-router-dom";
 import "./App.css";
 import {
   MisdemeanourProps,
@@ -26,10 +26,11 @@ function App() {
   }, []);
   
   return (
+    
     <MisdemeanoursContext.Provider value={misdemeanours}>
-      <BrowserRouter>
+       <HashRouter>
         <Router />
-      </BrowserRouter>
+        </HashRouter>
     </MisdemeanoursContext.Provider>
   );
 }

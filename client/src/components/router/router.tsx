@@ -7,7 +7,7 @@ import DefaultLayout from "../layouts/main_layout";
 
 export const Router: React.FC = () => (
   <>
-  <HashRouter>
+ 
   <Routes>
       <Route path="/" element={<DefaultLayout />}>
         <Route path="/" element={<Home />} />
@@ -17,7 +17,7 @@ export const Router: React.FC = () => (
         <Route path="*" element={<PageNotFound />} />
       </Route>
     </Routes>
-  </HashRouter>
+ 
    
   </>
 );
