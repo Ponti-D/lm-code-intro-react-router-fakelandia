@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import MisdemeanerFilter from "./misdemeanour_filter";
-import { MisdemeanoursContext } from "./MisdemeanoursContext";
+import { MisdemeanoursContext } from "./misdemeanours_context";
 
 export const MisdemeanoursTable: React.FC = () => {
   const misdemeanours = useContext(MisdemeanoursContext);
